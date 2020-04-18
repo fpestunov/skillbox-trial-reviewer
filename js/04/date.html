@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Human Friendly Date</title>
+  </head>
+  <body>
+    <script>
+      function getFormatedMonth(date) {
+        var months = [
+          "января",
+          "февраля",
+          "марта",
+          "апреля",
+          "мая",
+          "июня",
+          "июля",
+          "августа",
+          "сентября",
+          "октября",
+          "ноября",
+          "декабря",
+        ];
+        return months[date.getMonth()];
+      }
+
+      function getFormatedHours(date) {
+        var hour = date.getHours();
+        var str = "";
+        switch (hour) {
+          case 1:
+            str = "час";
+            break;
+
+          case 2:
+          case 3:
+          case 4:
+          case 22:
+          case 23:
+            str = "часa";
+            break;
+
+          default:
+            str = "часов";
+            break;
+        }
+        return hour + " " + str;
+      }
+
+      function getFormatedMinutes(date) {
+        var min = date.getMinutes();
+        var str = "";
+        switch (min % 10) {
+          case 1:
+            str = "минута";
+            break;
+
+          case 2:
+          case 3:
+          case 4:
+            str = "минуты";
+            break;
+
+          default:
+            str = "минут";
+            break;
+        }
+        return min + " " + str;
+      }
+
+      function getFormatedSeconds(date) {
+        var sec = date.getSeconds();
+        var str = "";
+        switch (sec % 10) {
+          case 1:
+            str = "секунда";
+            break;
+
+          case 2:
+          case 3:
+          case 4:
+            str = "секунды";
+            break;
+
+          default:
+            str = "секунд";
+            break;
+        }
+        return sec + " " + str;
+      }
+
+      function getFormatedWeekDay(date) {
+        return getDay[date.getDay()];
+      }
+
+      function formateDate(date) {
+        return (
+          date.getDate() +
+          " " +
+          getFormatedMonth(date) +
+          " " +
+          date.getFullYear() +
+          " года " +
+          getFormatedHours(date) +
+          " " +
+          getFormatedMinutes(date) +
+          " " +
+          getFormatedSeconds(date)
+        );
+      }
+
+      alert("Сегодня, " + formateDate(new Date()));
+
+      // TEST
+      var d = new Date();
+      d.setHours(1);
+      console.log(getFormatedHours(d) === "1 час");
+      d.setHours(2);
+      console.log(getFormatedHours(d) === "2 часa");
+      d.setHours(14);
+      console.log(getFormatedHours(d) === "14 часов");
+    </script>
+  </body>
+</html>

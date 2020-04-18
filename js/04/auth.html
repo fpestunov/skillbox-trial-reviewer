@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Авторизация пользователя</title>
+  </head>
+  <body>
+    <script>
+      var users = [
+        { name: "John Doe", login: "john", password: "1234" },
+        { name: "Jane Doe", login: "jane", password: "qwerty" },
+        { name: "Donald Trump", login: "trump", password: "usa" },
+      ];
+      function login() {
+        var visitor = {};
+        visitor.login = prompt("login:");
+        visitor.password = prompt("password:");
+        return visitor;
+      }
+
+      function auth(visitor) {
+        var isValidUser = false;
+        var user = {};
+
+        for (var i = 0; i < users.length; i++) {
+          debugger;
+          isValidUser =
+            users[i].login === visitor.login &&
+            users[i].password === visitor.password;
+          if (isValidUser) {
+            return users[i];
+          }
+        }
+
+        return undefined;
+      }
+
+      var visitor = login();
+      var user = auth(visitor);
+
+      if (typeof user !== "undefined") {
+        alert("Здравствуйте, " + user.name + "!");
+      } else {
+        alert("Ошибка авторизации.");
+      }
+    </script>
+  </body>
+</html>
